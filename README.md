@@ -2,7 +2,7 @@
 
 Built using the WordPress Plugin Boilerplate generator https://wppb.me/.
 
-Download the plugin from WordPress https://wordpress.org/plugins/mrlegend-typedjs/ or search for it in the plugin section.
+Download the plugin from WordPress https://downloads.wordpress.org/plugin/mrlegend-typedjs.zip or search for it in the plugin section.
 
 A WordPress plugin to allow you to use Typed JS in WordPress inside the given shortcode.
 
