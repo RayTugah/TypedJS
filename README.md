@@ -9,6 +9,9 @@ A WordPress plugin to allow you to use Typed JS in WordPress inside the given sh
 [typedjs]Content[/typedjs]
 
 Simply download and upload in the archive into the WordPress plugins section and activate. 
+
+If you like the plugin, keep me awake to build more: 
+
 <a href="https://www.buymeacoffee.com/JyrlWUz" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 
