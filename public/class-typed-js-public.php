@@ -4,7 +4,7 @@
  * The public-facing functionality of the plugin.
  *
  * @link       https://github.com/Brennii96/
- * @since      1.0.0
+ * @since      1.2.0
  *
  * @package    Typed_Js
  * @subpackage Typed_Js/public
@@ -25,7 +25,7 @@ class Typed_Js_Public {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -34,7 +34,7 @@ class Typed_Js_Public {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -43,7 +43,7 @@ class Typed_Js_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -53,40 +53,16 @@ class Typed_Js_Public {
 		$this->version = $version;
 
 		//Add JS in head
-		add_action('wp_head', array( $this, 'hook_js' ));
+//		add_action('wp_head', array( $this, 'typed_js_header' ));
 
 		//Add shorcode
 		add_shortcode( 'typedjs', array( $this, 'typedjs_shortcode' ) );
-
-	}
-
-	/**
-	 * Register the stylesheets for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Typed_Js_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Typed_Js_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/typed-js-public.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 */
 	public function enqueue_scripts() {
 
@@ -110,12 +86,18 @@ class Typed_Js_Public {
 	 *
 	 * ADD shortcode
 	 * Usage: [typedjs]CONTENT[/typedjs]
-	 * Multiple lines: add , between
+	 * Multiple lines: add + between
 	 */
-
-
 	// Add Shortcode
-	public function typedjs_shortcode( $atts , $content = null ) {
+	public function typedjs_shortcode( $atts, $content = null ) {
+
+		$atts = shortcode_atts( array(
+			'typespeed' => 70,
+			'startdelay' => 800,
+			'backdelay' => 1200,
+			'backspeed' => 20,
+			'loop' => true,
+		), $atts);
 
 		//Loop
 		$exp = explode("+", $content);
@@ -125,32 +107,21 @@ class Typed_Js_Public {
 			$sentence .= "<p>$sentence_raw</p>";
 		}
 
-		$output = "<div class=\"type-wrap\" style=\"display:none;\">
-        <div id=\"typed-strings\">$sentence</div>
-        <span id=\"typed\"></span>
-        </div>";
-
-		return $output;
-	}
-
-	/**
-	 *
-	 * Add code to header
-	 *
-	 */
-	public function hook_js() {
-		$output = "<script>
+		$output = "
+		<div class=\"type-wrap\" style=\"display:none;\">
+		  <div id=\"typed-strings\">$sentence</div>
+		  <span id=\"typed\"></span>
+		</div>
+		<script>
 	    jQuery(function($){
-	
 	    $('.type-wrap').show();
-	
 	        $('#typed').typed({
 	            stringsElement: $('#typed-strings'),
-	            typeSpeed: 70,
-	            startDelay: 800,
-	            backDelay: 1200,
-	            backSpeed: 20,
-	            loop: true,
+	            typeSpeed: ".$atts['typespeed'].",
+	            startDelay: ".$atts['startdelay'].",
+	            backDelay: ".$atts['backdelay'].",
+	            backSpeed: ".$atts['backspeed'].",
+	            loop: ".$atts['loop'].",
 	            cursorChar: \"|\",
 	            contentType: 'html', // or text
 	            // call when done callback function
@@ -163,15 +134,13 @@ class Typed_Js_Public {
 	            // callback for reset
 	            resetCallback: function() { newTyped(); }
 	        });
-	
 	        $('.reset').click(function(){
 	            $('#typed').typed('reset');
 	        });
 	    });
-	
-	    </script>";
+	    </script>
+		";
 
-		echo $output;
-
+		return $output;
 	}
 }
