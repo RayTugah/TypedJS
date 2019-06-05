@@ -6,7 +6,7 @@
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://github.com/Brennii96/
- * @since      1.0.0
+ * @since      1.2.0
  *
  * @package    Typed_Js
  * @subpackage Typed_Js/admin/partials
@@ -22,5 +22,5 @@
 
     <p>To use the backspace feature add a plus sign '+'.</p>
 
-    <p>It will loop continuously.</p>
+    <p>Add Typed JS parameters to change the defaults for example: <code>[typedjs typespeed="20" startdelay="800" backdelay="1002" backspeed="1" loop="false"]Text Line 1 + Text Line 2 + Text line 3[/typedjs]</code></p>
 </div>
