@@ -13,7 +13,7 @@ Simply download and upload in the archive into the WordPress plugins section and
 # Description
 This plug-in allows you to use TypedJS in your WordPress installation. TypedJS is a typewriter style animation to engage your users and catch their attention. The text will be typed out. Just put your content between the `[typedjs][/typedjs]` tags. Use the + sign to use the backspace feature.
 The additional parameters map up to TypedJS so `typespeed` parameter is in milliseconds and `loop` can only be `true` or `false`. It will add a typing effect.
-To view a demo by the author, Matt Boldt of TypedJS click here: https://mattboldt.com/demos/typed-js/](https://mattboldt.com/demos/typed-js/).
+To view a demo by the author, Matt Boldt of TypedJS click here: https://mattboldt.com/demos/typed-js/.
 
 # Installation
 1. Upload `typed-js.php` to the `/wp-content/plugins/` directory
