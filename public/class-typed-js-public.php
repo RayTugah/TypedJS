@@ -92,11 +92,13 @@ class Typed_Js_Public {
 	public function typedjs_shortcode( $atts, $content = null ) {
 
 		$atts = shortcode_atts( array(
-			'typespeed' => 70,
-			'startdelay' => 800,
-			'backdelay' => 1200,
-			'backspeed' => 20,
-			'loop' => true,
+			'typespeed'  		 => 70,
+			'startdelay' 	 	 => 800,
+			'backdelay'  		 => 1200,
+			'backspeed'  		 => 20,
+			'loop'  				 => true,
+			'smartBackspace' => true,
+			'cursor'			   => '',
 		), $atts);
 
 		//Loop
@@ -105,6 +107,12 @@ class Typed_Js_Public {
 
 		foreach($exp AS $sentence_raw) {
 			$sentence .= "<p>$sentence_raw</p>";
+		}
+
+		if ($atts['cursor']) {
+			$styles = "<style>.typed-cursor{".$atts['cursor']."}</style>";
+		} else {
+			$styles = '';
 		}
 
 		$output = "
@@ -121,6 +129,7 @@ class Typed_Js_Public {
 	            startDelay: ".$atts['startdelay'].",
 	            backDelay: ".$atts['backdelay'].",
 	            backSpeed: ".$atts['backspeed'].",
+							smartBackspace: ".$atts['smartBackspace'].",
 	            loop: ".$atts['loop'].",
 	            cursorChar: \"|\",
 	            contentType: 'html', // or text
@@ -129,7 +138,7 @@ class Typed_Js_Public {
 	            // starting callback function before each string
 	            preStringTyped: function() {},
 	            //callback for every typed string
-		        onStringTyped: function() {},
+		          onStringTyped: function() {},
 	            loopCount: false,
 	            // callback for reset
 	            resetCallback: function() { newTyped(); }
@@ -139,6 +148,7 @@ class Typed_Js_Public {
 	        });
 	    });
 	    </script>
+			".$styles."
 		";
 
 		return $output;
