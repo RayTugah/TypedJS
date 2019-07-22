@@ -8,7 +8,7 @@ A WordPress plugin to allow you to use Typed JS in WordPress inside the given sh
 
 [typedjs]Content[/typedjs]
 
-Simply download and upload in the archive into the WordPress plugins section and activate. 
+Simply download and upload the archive into the WordPress plugins section and activate. 
 
 
 # Description
